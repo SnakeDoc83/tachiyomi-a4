@@ -4,6 +4,9 @@
 
 
 # ![app icon](./.github/readme-images/app-icon.png)Tachiyomi
+
+Changes to Tachiyomi in early January 2020 made it no longer useable with Android 4.x.  This fork is based off the last point before that change.  Don't expect many updates or upgrades--maintenance will be the main focus.  Again, to be clear, you should only be using this version of Tachiyomi if you're on Android 4.x; otherwise you should be using Tachiyomi's dev build or one of the other Tachiyomi forks.
+
 Tachiyomi is a free and open source manga reader for Android.
 
 ![screenshots of app](./.github/readme-images/screens.png)
@@ -11,19 +14,11 @@ Tachiyomi is a free and open source manga reader for Android.
 ## Features
 
 Features include:
-* Online reading from sources such as KissManga, MangaDex, [and more](https://github.com/inorichi/tachiyomi-extensions)
-* Local reading of downloaded manga
-* A configurable reader with multiple viewers, reading directions and other settings.
-* [MyAnimeList](https://myanimelist.net/), [AniList](https://anilist.co/), [Kitsu](https://kitsu.io/explore/anime), and [Shikimori](https://shikimori.one) support
-* Categories to organize your library
-* Light and dark themes
-* Schedule updating your library for new chapters
-* Create backups locally to read offline or to your desired cloud service 
+* Tachiyomi's features up to Jan 7, 2020
+* Works with latest Cloudflare
 
 ## Download
-Get the app from our [releases page](https://github.com/inorichi/tachiyomi/releases).
-
-If you want to try new features before they get to the stable release, you can download the dev version [here](http://tachiyomi.kanade.eu/latest).
+Get the app from our [releases page](https://github.com/SnakeDoc83/tachiyomi-a4/releases).
 
 ## Issues, Feature Requests and Contributing
 
@@ -31,7 +26,7 @@ Please make sure to read the full guidelines. Your issue may be closed without w
 
 <details><summary>Issues</summary>
 
-1. **Before reporting a new issue, take a look at the [FAQ](https://github.com/inorichi/tachiyomi/wiki/FAQ), the [changelog](https://github.com/inorichi/tachiyomi/releases) and the already opened [issues](https://github.com/inorichi/tachiyomi/issues).**
+1. **Before reporting a new issue, take a look at the [FAQ](https://github.com/inorichi/tachiyomi/wiki/FAQ), the [changelog](https://github.com/SnakeDoc83/tachiyomi-a4/releases) and the already opened [issues](issues).**
 2. If you are unsure, ask here: [![Discord](https://img.shields.io/discord/349436576037732353.svg)](https://discord.gg/tachiyomi)
 
 </details>
@@ -55,8 +50,7 @@ DON'T: https://github.com/inorichi/tachiyomi/issues/75
 
 <details><summary>Feature Requests</summary>
 
-* Write a detailed issue, explaning what it should do or how. Avoid writing just "like X app does"
-* Include screenshot (if needed)
+* I may occasionally pull from the main repo, but don't get your hopes up.
 
 Catalogue requests should be created at https://github.com/inorichi/tachiyomi-extensions, they do not belong in this repository.
 </details>
