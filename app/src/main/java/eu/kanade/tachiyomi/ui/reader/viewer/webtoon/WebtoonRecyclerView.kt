@@ -14,6 +14,7 @@ import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.view.animation.DecelerateInterpolator
 import eu.kanade.tachiyomi.ui.reader.viewer.GestureDetectorWithLongTap
+import kotlin.math.abs
 
 /**
  * Implementation of a [RecyclerView] used by the webtoon reader.
@@ -270,7 +271,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
                     if (!isZoomDragging && currentScale > 1f) {
                         var startScroll = false
 
-                        if (Math.abs(dx) > touchSlop) {
+                        if (abs(dx) > touchSlop) {
                             if (dx < 0) {
                                 dx += touchSlop
                             } else {
@@ -278,7 +279,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
                             }
                             startScroll = true
                         }
-                        if (Math.abs(dy) > touchSlop) {
+                        if (abs(dy) > touchSlop) {
                             if (dy < 0) {
                                 dy += touchSlop
                             } else {

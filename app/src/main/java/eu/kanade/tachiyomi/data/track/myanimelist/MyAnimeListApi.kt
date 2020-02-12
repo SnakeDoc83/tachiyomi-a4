@@ -27,9 +27,10 @@ import eu.kanade.tachiyomi.network.A4OkHttp.Companion.code
 import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
 import eu.kanade.tachiyomi.network.A4OkHttp.Companion.toMediaTypeOrNull
 import eu.kanade.tachiyomi.network.A4OkHttp.Companion.priorResponse
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.toRequestBody
 
 
-class MyanimelistApi(private val client: OkHttpClient, interceptor: MyAnimeListInterceptor) {
+class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListInterceptor) {
 
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
@@ -40,8 +41,7 @@ class MyanimelistApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                     .flatMap { Observable.from(it) }
                     .filter { it.title.contains(realQuery, true) }
                     .toList()
-        }
-        else {
+        } else {
             client.newCall(GET(searchUrl(query)))
                     .asObservable()
                     .flatMap { response ->
@@ -269,7 +269,7 @@ class MyanimelistApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                     .put("score", track.score)
                     .put("num_read_chapters", track.last_chapter_read)
 
-            return RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), body.toString())
+            return body.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
         }
 
         private fun Element.searchTitle() = select("strong").text()!!

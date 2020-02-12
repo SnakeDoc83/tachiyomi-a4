@@ -8,6 +8,7 @@ import okio.Buffer
 import org.json.JSONObject
 import eu.kanade.tachiyomi.network.A4OkHttp.Companion.code
 import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.toRequestBody
 
 class MyAnimeListInterceptor(private val myanimelist: Myanimelist): Interceptor {
 
@@ -17,7 +18,7 @@ class MyAnimeListInterceptor(private val myanimelist: Myanimelist): Interceptor 
         val request = chain.request()
         var response = chain.proceed(updateRequest(request))
 
-        if (response.code == 400){
+        if (response.code == 400) {
             myanimelist.refreshLogin()
             response = chain.proceed(updateRequest(request))
         }
@@ -47,15 +48,14 @@ class MyAnimeListInterceptor(private val myanimelist: Myanimelist): Interceptor 
     private fun updateFormBody(requestBody: RequestBody): RequestBody {
         val formString = bodyToString(requestBody)
 
-        return RequestBody.create(requestBody.contentType(),
-                "$formString${if (formString.isNotEmpty()) "&" else ""}${MyanimelistApi.CSRF}=${myanimelist.getCSRF()}")
+        return "$formString${if (formString.isNotEmpty()) "&" else ""}${MyAnimeListApi.CSRF}=${myanimelist.getCSRF()}".toRequestBody(requestBody.contentType())
     }
 
     private fun updateJsonBody(requestBody: RequestBody): RequestBody {
         val jsonString = bodyToString(requestBody)
         val newBody = JSONObject(jsonString)
-                .put(MyanimelistApi.CSRF, myanimelist.getCSRF())
+                .put(MyAnimeListApi.CSRF, myanimelist.getCSRF())
 
-        return RequestBody.create(requestBody.contentType(), newBody.toString())
+        return newBody.toString().toRequestBody(requestBody.contentType())
     }
 }

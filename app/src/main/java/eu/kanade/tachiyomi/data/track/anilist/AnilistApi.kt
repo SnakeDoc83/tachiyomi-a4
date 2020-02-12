@@ -14,11 +14,11 @@ import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.asObservableSuccess
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.RequestBody
 import rx.Observable
 import java.util.Calendar
 import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
 import eu.kanade.tachiyomi.network.A4OkHttp.Companion.toMediaTypeOrNull
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.toRequestBody
 
 
 class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
@@ -45,7 +45,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 "query" to query,
                 "variables" to variables
         )
-        val body = RequestBody.create(jsonMime, payload.toString())
+        val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
@@ -84,7 +84,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 "query" to query,
                 "variables" to variables
         )
-        val body = RequestBody.create(jsonMime, payload.toString())
+        val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
@@ -128,7 +128,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 "query" to query,
                 "variables" to variables
         )
-        val body = RequestBody.create(jsonMime, payload.toString())
+        val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
@@ -189,7 +189,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 "query" to query,
                 "variables" to variables
         )
-        val body = RequestBody.create(jsonMime, payload.toString())
+        val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
@@ -234,7 +234,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         val payload = jsonObject(
                 "query" to query
         )
-        val body = RequestBody.create(jsonMime, payload.toString())
+        val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
