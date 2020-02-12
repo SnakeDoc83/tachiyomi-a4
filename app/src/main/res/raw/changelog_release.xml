@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="true">
+    <changelogversion versionName="v0.8.5.01" changeDate="">
+        <changelogtext>First A4 build based off of early Jan 2020 Tachiyomi for use on Android 4.x</changelogtext>
+        <changelogtext>Updated Cloudflare bypass with warning for outdated webview</changelogtext>
+    </changelogversion>
+
     <changelogversion versionName="v0.8.4" changeDate="">
         <changelogtext>All the internal sources have been removed. They now need to be
             installed as an extension.</changelogtext>
