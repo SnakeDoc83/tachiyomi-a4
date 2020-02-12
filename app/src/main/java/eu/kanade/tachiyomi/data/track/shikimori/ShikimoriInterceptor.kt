@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.data.track.shikimori
 import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.Response
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
 
 class ShikimoriInterceptor(val shikimori: Shikimori, val gson: Gson) : Interceptor {
 

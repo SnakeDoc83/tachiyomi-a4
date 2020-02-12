@@ -23,8 +23,8 @@ class LibraryUpdateJob : Job() {
             val interval = prefInterval ?: preferences.libraryUpdateInterval().getOrDefault()
             if (interval > 0) {
                 val restrictions = preferences.libraryUpdateRestriction()
-                val acRestriction = "ac" in restrictions
-                val wifiRestriction = if ("wifi" in restrictions)
+                val acRestriction = restrictions != null && "ac" in restrictions
+                val wifiRestriction = if (restrictions != null && "wifi" in restrictions)
                     JobRequest.NetworkType.UNMETERED
                 else
                     JobRequest.NetworkType.CONNECTED

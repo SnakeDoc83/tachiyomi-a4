@@ -29,17 +29,17 @@ ext {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion '29.0.2'
     publishNonDefault true
 
     defaultConfig {
         applicationId "eu.kanade.tachiyomi"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 29
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionCode 41
-        versionName "0.8.4"
+        versionCode 42
+        versionName "0.8.5.01"
 
         buildConfigField "String", "COMMIT_COUNT", "\"${getCommitCount()}\""
         buildConfigField "String", "COMMIT_SHA", "\"${getGitSha()}\""
@@ -59,6 +59,9 @@ android {
         debug {
             versionNameSuffix "-${getCommitCount()}"
             applicationIdSuffix ".debug"
+        }
+        release {
+            applicationIdSuffix = '.a4'
         }
     }
 
@@ -130,7 +133,7 @@ dependencies {
     implementation 'com.github.pwittchen:reactivenetwork:0.13.0'
 
     // Network client
-    final okhttp_version = '4.2.1'
+    final okhttp_version = '3.12.0'
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     implementation 'com.squareup.okio:okio:2.4.0'
@@ -153,7 +156,7 @@ dependencies {
     implementation 'com.github.inorichi:unifile:e9ee588'
 
     // HTML parser
-    implementation 'org.jsoup:jsoup:1.12.1'
+    implementation 'org.jsoup:jsoup:1.12.2'
 
     // Job scheduling
     implementation 'com.evernote:android-job:1.2.5'

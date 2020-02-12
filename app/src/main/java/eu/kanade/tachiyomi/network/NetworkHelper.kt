@@ -12,6 +12,7 @@ import java.security.KeyManagementException
 import java.security.KeyStore
 import java.security.NoSuchAlgorithmException
 import javax.net.ssl.*
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.cipherSuites
 
 class NetworkHelper(context: Context) {
 

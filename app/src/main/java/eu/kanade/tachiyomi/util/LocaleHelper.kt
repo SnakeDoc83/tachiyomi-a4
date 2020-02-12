@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.util
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
@@ -30,7 +31,7 @@ object LocaleHelper {
     /**
      * The application's locale. When it's null, the system locale is used.
      */
-    private var appLocale = getLocaleFromString(preferences.lang())
+    private var appLocale: Locale? = getLocaleFromString(preferences.lang()!!)
 
     /**
      * The currently applied locale. Used to avoid losing the selected language after a non locale
@@ -44,7 +45,7 @@ object LocaleHelper {
      * @param pref the string value stored in preferences.
      */
     fun getLocaleFromString(pref: String): Locale? {
-        if (pref.isNullOrEmpty()) {
+        if (pref.isEmpty()) {
             return null
         }
         return getLocale(pref)
@@ -53,6 +54,7 @@ object LocaleHelper {
     /**
      * Returns Display name of a string language code
      */
+    @SuppressLint("DefaultLocale")
     fun getDisplayName(lang: String?, context: Context): String {
         return when (lang) {
             null -> ""
@@ -116,7 +118,7 @@ object LocaleHelper {
         val resources = app.resources
         resources.updateConfiguration(newConfig, resources.displayMetrics)
 
-        Locale.setDefault(currentLocale)
+        if (currentLocale != null) Locale.setDefault(currentLocale!!)
     }
 
     /**
@@ -138,7 +140,7 @@ object LocaleHelper {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             newConfig.locale = locale
         } else {
-            newConfig.locales = LocaleList(locale)
+            newConfig.setLocales(LocaleList(locale))
         }
         return newConfig
     }

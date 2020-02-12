@@ -13,6 +13,7 @@ import eu.kanade.tachiyomi.network.asObservableSuccess
 import okhttp3.Response
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
 
 internal class ExtensionGithubApi {
 

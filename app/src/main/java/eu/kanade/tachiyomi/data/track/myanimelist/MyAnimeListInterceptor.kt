@@ -6,6 +6,8 @@ import okhttp3.RequestBody
 import okhttp3.Response
 import okio.Buffer
 import org.json.JSONObject
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.code
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
 
 class MyAnimeListInterceptor(private val myanimelist: Myanimelist): Interceptor {
 

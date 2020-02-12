@@ -23,6 +23,7 @@ import eu.kanade.tachiyomi.ui.base.controller.popControllerWithTag
 import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
 import eu.kanade.tachiyomi.util.*
 import java.io.File
+import java.lang.Exception
 import java.util.concurrent.TimeUnit
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
@@ -152,7 +153,7 @@ class SettingsBackupController : SettingsController() {
             CODE_BACKUP_DIR -> if (data != null && resultCode == Activity.RESULT_OK) {
                 val activity = activity ?: return
                 // Get uri of backup folder.
-                val uri = data.data
+                val uri = data.data!!
 
                 // Get UriPermission so it's possible to write files post kitkat.
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
@@ -168,26 +169,30 @@ class SettingsBackupController : SettingsController() {
             CODE_BACKUP_CREATE -> if (data != null && resultCode == Activity.RESULT_OK) {
                 val activity = activity ?: return
                 val uri = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                    val dir = data.data.path
+                    val dir = data.data!!.path
                     val file = File(dir, Backup.getDefaultFilename())
 
                     Uri.fromFile(file)
                 } else {
-                    val uri = data.data
-                    val flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or
-                            Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                    try {
+                        val uri = data.data
+                        val flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or
+                                Intent.FLAG_GRANT_WRITE_URI_PERMISSION
 
-                    activity.contentResolver.takePersistableUriPermission(uri, flags)
-                    val file = UniFile.fromUri(activity, uri)
+                        activity.contentResolver.takePersistableUriPermission(uri!!, flags)
+                        val file = UniFile.fromUri(activity, uri)
 
-                    file.uri
+                        file.uri
+                    } catch (_: Exception) {
+                        throw Exception("uri null in SettingsBackupController")
+                    }
                 }
 
                 CreatingBackupDialog().showDialog(router, TAG_CREATING_BACKUP_DIALOG)
                 BackupCreateService.makeBackup(activity, uri, backupFlags)
             }
             CODE_BACKUP_RESTORE -> if (data != null && resultCode == Activity.RESULT_OK) {
-                val uri = data.data
+                val uri = data.data!!
                 RestoreBackupDialog(uri).showDialog(router)
             }
         }
@@ -311,7 +316,7 @@ class SettingsBackupController : SettingsController() {
                         val context = applicationContext
                         if (context != null) {
                             RestoringBackupDialog().showDialog(router, TAG_RESTORING_BACKUP_DIALOG)
-                            BackupRestoreService.start(context, args.getParcelable(KEY_URI))
+                            BackupRestoreService.start(context, args.getParcelable(KEY_URI)!!)
                         }
                     }
                     .build()
@@ -385,7 +390,7 @@ class SettingsBackupController : SettingsController() {
                     .negativeText(R.string.action_open_log)
                     .onNegative { _, _ ->
                         val context = applicationContext ?: return@onNegative
-                        if (!path.isEmpty()) {
+                        if (path?.isNotEmpty() == true) {
                             val destFile = File(path, file)
                             val uri = destFile.getUriCompat(context)
                             val sendIntent = Intent(Intent.ACTION_VIEW).apply {

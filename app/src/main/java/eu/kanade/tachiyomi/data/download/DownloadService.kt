@@ -112,7 +112,7 @@ class DownloadService : Service() {
      * Not used.
      */
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        return Service.START_NOT_STICKY
+        return START_NOT_STICKY
     }
 
     /**

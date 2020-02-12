@@ -15,12 +15,13 @@ import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.POST
 import eu.kanade.tachiyomi.network.asObservableSuccess
 import okhttp3.FormBody
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.toMediaTypeOrNull
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
 
 class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInterceptor) {
 

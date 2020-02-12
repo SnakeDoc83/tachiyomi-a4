@@ -32,7 +32,7 @@ class LibraryMangaUrlFetcher(private val networkFetcher: DataFetcher<InputStream
                             val output = try {
                                 tmpFile.outputStream()
                             } catch (e: FileNotFoundException) {
-                                tmpFile.parentFile.mkdirs()
+                                tmpFile.parentFile?.mkdirs()
                                 tmpFile.outputStream()
                             }
 

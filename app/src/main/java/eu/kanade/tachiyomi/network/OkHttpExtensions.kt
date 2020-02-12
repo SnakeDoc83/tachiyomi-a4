@@ -8,6 +8,8 @@ import rx.Observable
 import rx.Producer
 import rx.Subscription
 import java.util.concurrent.atomic.AtomicBoolean
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.code
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
 
 fun Call.asObservable(): Observable<Response> {
     return Observable.unsafeCreate { subscriber ->

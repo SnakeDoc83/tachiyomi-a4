@@ -8,10 +8,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
@@ -41,7 +39,6 @@ import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
-import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.openInBrowser
 import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
@@ -53,6 +50,7 @@ import uy.kohesive.injekt.injectLazy
 import java.text.DateFormat
 import java.text.DecimalFormat
 import java.util.Date
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.url
 
 /**
  * Fragment that shows manga information.
@@ -515,7 +513,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         val view = view ?: return
 
         val clipboard = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        clipboard.primaryClip = ClipData.newPlainText(label, content)
+        clipboard.setPrimaryClip(ClipData.newPlainText(label, content))
 
         activity.toast(view.context.getString(R.string.copied_to_clipboard, content.truncateCenter(20)),
                 Toast.LENGTH_SHORT)

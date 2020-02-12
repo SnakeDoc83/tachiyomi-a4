@@ -7,9 +7,10 @@ import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import rx.Completable
 import rx.Observable
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.toHttpUrlOrNull
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.name
 
 class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
 

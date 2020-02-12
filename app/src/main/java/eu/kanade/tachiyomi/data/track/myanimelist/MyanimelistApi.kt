@@ -11,7 +11,6 @@ import eu.kanade.tachiyomi.network.asObservableSuccess
 import eu.kanade.tachiyomi.util.selectInt
 import eu.kanade.tachiyomi.util.selectText
 import okhttp3.FormBody
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.Response
@@ -24,6 +23,10 @@ import rx.Observable
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.zip.GZIPInputStream
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.code
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.toMediaTypeOrNull
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.priorResponse
 
 
 class MyanimelistApi(private val client: OkHttpClient, interceptor: MyAnimeListInterceptor) {

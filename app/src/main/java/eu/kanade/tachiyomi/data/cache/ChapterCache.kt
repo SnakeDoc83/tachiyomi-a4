@@ -16,6 +16,7 @@ import rx.Observable
 import uy.kohesive.injekt.injectLazy
 import java.io.File
 import java.io.IOException
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
 
 /**
  * Class used to create chapter cache

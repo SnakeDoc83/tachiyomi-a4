@@ -21,6 +21,9 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.type
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.subtype
 
 /**
  * This class is the one in charge of downloading chapters.
@@ -102,7 +105,7 @@ class Downloader(
         pending.forEach { if (it.status != Download.QUEUE) it.status = Download.QUEUE }
 
         downloadsRelay.call(pending)
-        return !pending.isEmpty()
+        return pending.isNotEmpty()
     }
 
     /**
@@ -279,7 +282,7 @@ class Downloader(
                 // Do when page is downloaded.
                 .doOnNext { notifier.onProgressChange(download) }
                 .toList()
-                .map { _ -> download }
+                .map { download }
                 // Do after download completes
                 .doOnNext { ensureSuccessfulDownload(download, mangaDir, tmpDir, chapterDirname) }
                 // If the page list threw, it will resume here

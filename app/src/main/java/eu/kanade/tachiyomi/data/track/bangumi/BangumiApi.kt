@@ -18,6 +18,7 @@ import okhttp3.Request
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
 import java.net.URLEncoder
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
 
 class BangumiApi(private val client: OkHttpClient, interceptor: BangumiInterceptor) {
 

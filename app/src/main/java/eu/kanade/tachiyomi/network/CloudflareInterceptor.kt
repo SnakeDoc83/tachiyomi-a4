@@ -15,6 +15,9 @@ import okhttp3.Response
 import java.io.IOException
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.code
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.url
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.headers
 
 class CloudflareInterceptor(private val context: Context) : Interceptor {
 

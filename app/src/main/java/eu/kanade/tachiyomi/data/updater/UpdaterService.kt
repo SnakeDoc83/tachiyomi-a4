@@ -15,6 +15,7 @@ import eu.kanade.tachiyomi.util.saveTo
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 import java.io.File
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
 
 class UpdaterService : IntentService(UpdaterService::class.java.name) {
     /**

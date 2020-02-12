@@ -498,9 +498,9 @@ class LibraryController(
 
             try {
                 // Get the file's input stream from the incoming Intent
-                activity.contentResolver.openInputStream(data.data).use {
+                activity.contentResolver.openInputStream(data.data!!).use {
                     // Update cover to selected file, show error if something went wrong
-                    if (presenter.editCoverWithStream(it, manga)) {
+                    if (presenter.editCoverWithStream(it!!, manga)) {
                         // TODO refresh cover
                     } else {
                         activity.toast(R.string.notification_cover_update_failed)

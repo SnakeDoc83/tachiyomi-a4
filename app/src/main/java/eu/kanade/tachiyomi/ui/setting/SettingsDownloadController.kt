@@ -108,12 +108,12 @@ class SettingsDownloadController : SettingsController() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             DOWNLOAD_DIR_PRE_L -> if (data != null && resultCode == Activity.RESULT_OK) {
-                val uri = Uri.fromFile(File(data.data.path))
+                val uri = Uri.fromFile(File(data.data!!.path))
                 preferences.downloadsDirectory().set(uri.toString())
             }
             DOWNLOAD_DIR_L -> if (data != null && resultCode == Activity.RESULT_OK) {
                 val context = applicationContext ?: return
-                val uri = data.data
+                val uri = data.data!!
                 val flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or
                         Intent.FLAG_GRANT_WRITE_URI_PERMISSION
 

@@ -4,6 +4,9 @@ import okhttp3.Response
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.body
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.url
+import eu.kanade.tachiyomi.network.A4OkHttp.Companion.request
 
 fun Element.selectText(css: String, defaultValue: String? = null): String? {
     return select(css).first()?.text() ?: defaultValue

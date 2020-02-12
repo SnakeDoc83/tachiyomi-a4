@@ -80,7 +80,7 @@ class SettingsAboutController : SettingsController() {
         }
         preference {
             title = "Github"
-            val url = "https://github.com/inorichi/tachiyomi"
+            val url = "https://github.com/SnakeDoc83/tachiyomi-a4"
             summary = url
             onClick {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
@@ -171,18 +171,18 @@ class SettingsAboutController : SettingsController() {
     }
 
     private fun getFormattedBuildTime(): String {
-        try {
+        return try {
             val inputDf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'", Locale.US)
             inputDf.timeZone = TimeZone.getTimeZone("UTC")
-            val date = inputDf.parse(BuildConfig.BUILD_TIME)
+            val date = inputDf.parse(BuildConfig.BUILD_TIME)!!
 
             val outputDf = DateFormat.getDateTimeInstance(
                     DateFormat.MEDIUM, DateFormat.SHORT, Locale.getDefault())
             outputDf.timeZone = TimeZone.getDefault()
 
-            return outputDf.format(date)
+            outputDf.format(date)
         } catch (e: ParseException) {
-            return BuildConfig.BUILD_TIME
+            BuildConfig.BUILD_TIME
         }
     }
 }
